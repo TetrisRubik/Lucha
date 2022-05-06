@@ -1,0 +1,9 @@
+/** Estilo principal */
+body {
+	margin: 0;
+}
+
+#lienzo {
+	display: block;
+	margin: 6vw auto;
+}
