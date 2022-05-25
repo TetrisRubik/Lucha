@@ -1,9 +1,11 @@
 /** Estilo principal */
 body {
 	margin: 0;
+	background-color: var(--fondo);
 }
 
 #lienzo {
 	display: block;
 	margin: 6vw auto;
+	border: 1px solid var(--borde);
 }

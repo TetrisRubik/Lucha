@@ -7,8 +7,12 @@ lienzo.alto = 576;
 
 ctx.fillRect(0, 0, lienzo.ancho, lienzo.alto);
 
+const gravedad = 0.4;
+const suelo = lienzo.alto - 36;
+
 class Objeto {
-	constructor(posición, color, velocidad) {
+	constructor(tamaño, posición, color, velocidad) {
+		this.tamaño = tamaño;
 		this.posición = posición;
 		this.color = color;
 		this.velocidad = velocidad;
@@ -16,28 +20,31 @@ class Objeto {
 
 	dibuja() {
 		ctx.fillStyle = this.color;
-		ctx.fillRect(this.posición.x, this.posición.y, 50, 100);
+		ctx.fillRect(this.posición.x, this.posición.y, this.tamaño.ancho, this.tamaño.alto);
 	}
 
 	actualiza() {
 		this.dibuja();
-		this.posición.y += 10;
+		this.posición.y += this.velocidad.y;
+		if (this.posición.y + this.tamaño.alto + this.velocidad.y >= suelo) {
+			this.velocidad.y = 0;
+			this.posición.y = suelo - this.tamaño.alto;
+		} else {
+			this.velocidad.y += gravedad;
+		}
 	}
 }
 
-const jugador = new Objeto({ x: 64, y: 64 }, "#66F", { x: 0, y: 0 });
+const jugador = new Objeto({ ancho: 50, alto: 100 }, { x: 64, y: 64 }, "#66F", { x: 0, y: 2 });
 
-const rival = new Objeto({ x: 910, y: 64 }, "#F22", { x: 0, y: 0 });
-
-jugador.dibuja();
-rival.dibuja();
+const enemigo = new Objeto({ ancho: 50, alto: 100 }, { x: 910, y: 64 }, "#F22", { x: 0, y: 2 });
 
 function animación() {
-	window.requestAnimationFrame(animación);
 	ctx.fillStyle = "#000";
 	ctx.fillRect(0, 0, lienzo.ancho, lienzo.alto);
 	jugador.actualiza();
-	rival.actualiza();
+	enemigo.actualiza();
+	window.requestAnimationFrame(animación);
 }
 
 animación();
