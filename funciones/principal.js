@@ -12,6 +12,15 @@ ctx.fillRect(0, 0, lienzo.ancho, lienzo.alto);
 const gravedad = 0.4;
 const suelo = lienzo.alto - 36;
 
+let presión = {
+	a: {
+		presionado: false
+	},
+	d: {
+		presionado: false
+	}
+};
+
 class Objeto {
 	constructor(tamaño, posición, color, velocidad) {
 		this.tamaño = tamaño;
@@ -42,13 +51,22 @@ const jugador = new Objeto({ ancho: 50, alto: 100 }, { x: 64, y: 64 }, "#66F", {
 
 const enemigo = new Objeto({ ancho: 50, alto: 100 }, { x: 910, y: 64 }, "#F22", { x: 0, y: 2 });
 
-escuchar_controles(jugador);
+escuchar_controles(presión);
 
 function animación() {
 	ctx.fillStyle = "#000";
 	ctx.fillRect(0, 0, lienzo.ancho, lienzo.alto);
 	jugador.actualiza();
 	enemigo.actualiza();
+
+	jugador.velocidad.x = 0;
+
+	if (presión.a.presionado) {
+		jugador.velocidad.x = -10;
+	} else if (presión.d.presionado) {
+		jugador.velocidad.x = 10;
+	}
+
 	window.requestAnimationFrame(animación);
 }
 
