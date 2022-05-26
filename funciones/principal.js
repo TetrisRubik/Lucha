@@ -1,4 +1,6 @@
 //* Guión principal.
+import escuchar_controles from "./controles.js";
+
 const lienzo = document.getElementById("lienzo");
 const ctx = lienzo.getContext("2d");
 
@@ -25,6 +27,7 @@ class Objeto {
 
 	actualiza() {
 		this.dibuja();
+		this.posición.x += this.velocidad.x;
 		this.posición.y += this.velocidad.y;
 		if (this.posición.y + this.tamaño.alto + this.velocidad.y >= suelo) {
 			this.velocidad.y = 0;
@@ -38,6 +41,8 @@ class Objeto {
 const jugador = new Objeto({ ancho: 50, alto: 100 }, { x: 64, y: 64 }, "#66F", { x: 0, y: 2 });
 
 const enemigo = new Objeto({ ancho: 50, alto: 100 }, { x: 910, y: 64 }, "#F22", { x: 0, y: 2 });
+
+escuchar_controles(jugador);
 
 function animación() {
 	ctx.fillStyle = "#000";
