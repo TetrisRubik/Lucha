@@ -13,6 +13,7 @@ const gravedad = 0.4;
 const suelo = lienzo.alto - 36;
 
 let presión = {
+	última_tecla: "",
 	a: {
 		presionado: false
 	},
@@ -61,7 +62,11 @@ function animación() {
 
 	jugador.velocidad.x = 0;
 
-	if (presión.a.presionado) {
+	if (presión.a.presionado && presión.última_tecla == "a") {
+		jugador.velocidad.x = -10;
+	} else if (presión.d.presionado && presión.última_tecla == "d") {
+		jugador.velocidad.x = 10;
+	} else if (presión.a.presionado) {
 		jugador.velocidad.x = -10;
 	} else if (presión.d.presionado) {
 		jugador.velocidad.x = 10;
