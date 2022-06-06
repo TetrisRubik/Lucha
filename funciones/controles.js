@@ -7,6 +7,11 @@ export default function escuchar_controles(presión) {
 				presión.a.presionado = true;
 				presión.última_tecla = "a";
 				break;
+			case "ArrowUp":
+			case "w":
+				presión.w.presionado = true;
+				presión.última_tecla = "w";
+				break;
 			case "ArrowRight":
 			case "d":
 				presión.d.presionado = true;
@@ -24,6 +29,9 @@ export default function escuchar_controles(presión) {
 			case "ArrowRight":
 			case "d":
 				presión.d.presionado = false;
+				break;
+			case "w":
+				presión.w.presionado = false;
 				break;
 		}
 	});

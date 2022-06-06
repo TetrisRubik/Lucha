@@ -17,6 +17,9 @@ let presión = {
 	a: {
 		presionado: false
 	},
+	w: {
+		presionado: false
+	},
 	d: {
 		presionado: false
 	}
@@ -70,6 +73,9 @@ function animación() {
 		jugador.velocidad.x = -10;
 	} else if (presión.d.presionado) {
 		jugador.velocidad.x = 10;
+	}
+	if (presión.w.presionado) {
+		jugador.velocidad.y = -10;
 	}
 
 	window.requestAnimationFrame(animación);
