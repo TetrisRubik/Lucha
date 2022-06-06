@@ -10,10 +10,10 @@ lienzo.alto = 576;
 ctx.fillRect(0, 0, lienzo.ancho, lienzo.alto);
 
 const gravedad = 0.4;
-const suelo = lienzo.alto - 36;
+const suelo = lienzo.alto - 32;
 
 let presión = {
-	última_tecla: "",
+	tecla_actual: "",
 	a: {
 		presionado: false
 	},
@@ -51,9 +51,9 @@ class Objeto {
 	}
 }
 
-const jugador = new Objeto({ ancho: 50, alto: 100 }, { x: 64, y: 64 }, "#66F", { x: 0, y: 2 });
+const jugador = new Objeto({ ancho: 120, alto: 240 }, { x: 64, y: 64 }, "#66F", { x: 0, y: 2 });
 
-const enemigo = new Objeto({ ancho: 50, alto: 100 }, { x: 910, y: 64 }, "#F22", { x: 0, y: 2 });
+const enemigo = new Objeto({ ancho: 120, alto: 240 }, { x: 840, y: 64 }, "#F22", { x: 0, y: 2 });
 
 escuchar_controles(presión);
 
@@ -65,17 +65,17 @@ function animación() {
 
 	jugador.velocidad.x = 0;
 
-	if (presión.a.presionado && presión.última_tecla == "a") {
+	if (presión.a.presionado && presión.tecla_actual == "a") {
 		jugador.velocidad.x = -10;
-	} else if (presión.d.presionado && presión.última_tecla == "d") {
+	} else if (presión.d.presionado && presión.tecla_actual == "d") {
 		jugador.velocidad.x = 10;
 	} else if (presión.a.presionado) {
 		jugador.velocidad.x = -10;
 	} else if (presión.d.presionado) {
 		jugador.velocidad.x = 10;
 	}
-	if (presión.w.presionado) {
-		jugador.velocidad.y = -10;
+	if (presión.w.presionado && jugador.posición.y + jugador.tamaño.alto >= suelo - 5) {
+		jugador.velocidad.y = -13;
 	}
 
 	window.requestAnimationFrame(animación);
