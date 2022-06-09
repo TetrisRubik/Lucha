@@ -17,6 +17,18 @@ export default function escuchar_controles(presión) {
 				presión.d.presionado = true;
 				presión.tecla_actual = "d";
 				break;
+			case "ArrowLeft":
+				presión.izquierda.presionado = true;
+				presión.tecla_actual = "izquierda";
+				break;
+			case "ArrowUp":
+				presión.arriba.presionado = true;
+				presión.tecla_actual = "arriba";
+				break;
+			case "ArrowRight":
+				presión.derecha.presionado = true;
+				presión.tecla_actual = "derecha";
+				break;
 		}
 	});
 
@@ -33,6 +45,15 @@ export default function escuchar_controles(presión) {
 			case "D":
 			case "d":
 				presión.d.presionado = false;
+				break;
+			case "ArrowLeft":
+				presión.izquierda.presionado = false;
+				break;
+			case "ArrowUp":
+				presión.arriba.presionado = false;
+				break;
+			case "ArrowRight":
+				presión.derecha.presionado = false;
 				break;
 		}
 	});

@@ -14,15 +14,12 @@ const suelo = lienzo.alto - 32;
 
 let presión = {
 	tecla_actual: "",
-	a: {
-		presionado: false
-	},
-	w: {
-		presionado: false
-	},
-	d: {
-		presionado: false
-	}
+	a: { presionado: false },
+	w: { presionado: false },
+	d: { presionado: false },
+	izquierda: { presionado: false },
+	arriba: { presionado: false },
+	derecha: { presionado: false }
 };
 
 class Objeto {
@@ -64,6 +61,7 @@ function animación() {
 	enemigo.actualiza();
 
 	jugador.velocidad.x = 0;
+	enemigo.velocidad.x = 0;
 
 	if (presión.a.presionado && presión.tecla_actual == "a") {
 		jugador.velocidad.x = -10;
@@ -76,6 +74,19 @@ function animación() {
 	}
 	if (presión.w.presionado && jugador.posición.y + jugador.tamaño.alto >= suelo - 5) {
 		jugador.velocidad.y = -13;
+	}
+
+	if (presión.izquierda.presionado && presión.tecla_actual == "izquierda") {
+		enemigo.velocidad.x = -10;
+	} else if (presión.derecha.presionado && presión.tecla_actual == "derecha") {
+		enemigo.velocidad.x = 10;
+	} else if (presión.izquierda.presionado) {
+		enemigo.velocidad.x = -10;
+	} else if (presión.derecha.presionado) {
+		enemigo.velocidad.x = 10;
+	}
+	if (presión.arriba.presionado && enemigo.posición.y + enemigo.tamaño.alto >= suelo - 5) {
+		enemigo.velocidad.y = -13;
 	}
 
 	window.requestAnimationFrame(animación);
