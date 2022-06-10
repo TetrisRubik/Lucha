@@ -1,33 +1,33 @@
 //* Detección de tecleo y reacción correspondiente.
-export default function escuchar_controles(presión) {
+export default function escuchar_controles(teclas) {
 	document.addEventListener("keydown", (tecla) => {
 		switch (tecla.key) {
 			case "A":
 			case "a":
-				presión.a.presionado = true;
-				presión.tecla_actual = "a";
+				teclas.a.activa = true;
+				teclas.actual = "a";
 				break;
 			case "W":
 			case "w":
-				presión.w.presionado = true;
-				presión.tecla_actual = "w";
+				teclas.w.activa = true;
+				teclas.actual = "w";
 				break;
 			case "D":
 			case "d":
-				presión.d.presionado = true;
-				presión.tecla_actual = "d";
+				teclas.d.activa = true;
+				teclas.actual = "d";
 				break;
 			case "ArrowLeft":
-				presión.izquierda.presionado = true;
-				presión.tecla_actual = "izquierda";
+				teclas.izquierda.activa = true;
+				teclas.actual = "izquierda";
 				break;
 			case "ArrowUp":
-				presión.arriba.presionado = true;
-				presión.tecla_actual = "arriba";
+				teclas.arriba.activa = true;
+				teclas.actual = "arriba";
 				break;
 			case "ArrowRight":
-				presión.derecha.presionado = true;
-				presión.tecla_actual = "derecha";
+				teclas.derecha.activa = true;
+				teclas.actual = "derecha";
 				break;
 		}
 	});
@@ -36,24 +36,24 @@ export default function escuchar_controles(presión) {
 		switch (tecla.key) {
 			case "A":
 			case "a":
-				presión.a.presionado = false;
+				teclas.a.activa = false;
 				break;
 			case "W":
 			case "w":
-				presión.w.presionado = false;
+				teclas.w.activa = false;
 				break;
 			case "D":
 			case "d":
-				presión.d.presionado = false;
+				teclas.d.activa = false;
 				break;
 			case "ArrowLeft":
-				presión.izquierda.presionado = false;
+				teclas.izquierda.activa = false;
 				break;
 			case "ArrowUp":
-				presión.arriba.presionado = false;
+				teclas.arriba.activa = false;
 				break;
 			case "ArrowRight":
-				presión.derecha.presionado = false;
+				teclas.derecha.activa = false;
 				break;
 		}
 	});

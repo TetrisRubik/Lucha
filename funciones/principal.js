@@ -12,14 +12,14 @@ ctx.fillRect(0, 0, lienzo.ancho, lienzo.alto);
 const gravedad = 0.4;
 const suelo = lienzo.alto - 32;
 
-let presión = {
-	tecla_actual: "",
-	a: { presionado: false },
-	w: { presionado: false },
-	d: { presionado: false },
-	izquierda: { presionado: false },
-	arriba: { presionado: false },
-	derecha: { presionado: false }
+const teclas = {
+	actual: "",
+	a: { activa: false },
+	w: { activa: false },
+	d: { activa: false },
+	izquierda: { activa: false },
+	arriba: { activa: false },
+	derecha: { activa: false }
 };
 
 class Objeto {
@@ -52,7 +52,7 @@ const jugador = new Objeto({ ancho: 120, alto: 240 }, { x: 64, y: 64 }, "#66F", 
 
 const enemigo = new Objeto({ ancho: 120, alto: 240 }, { x: 840, y: 64 }, "#F22", { x: 0, y: 2 });
 
-escuchar_controles(presión);
+escuchar_controles(teclas);
 
 function animación() {
 	ctx.fillStyle = "#000";
@@ -62,30 +62,30 @@ function animación() {
 
 	jugador.velocidad.x = 0;
 	enemigo.velocidad.x = 0;
-
-	if (presión.a.presionado && presión.tecla_actual == "a") {
+	// console.log(teclas.actual);
+	if (teclas.a.activa && teclas.actual == "a") {
 		jugador.velocidad.x = -10;
-	} else if (presión.d.presionado && presión.tecla_actual == "d") {
+	} else if (teclas.d.activa && teclas.actual == "d") {
 		jugador.velocidad.x = 10;
-	} else if (presión.a.presionado) {
+	} else if (teclas.a.activa) {
 		jugador.velocidad.x = -10;
-	} else if (presión.d.presionado) {
+	} else if (teclas.d.activa) {
 		jugador.velocidad.x = 10;
 	}
-	if (presión.w.presionado && jugador.posición.y + jugador.tamaño.alto >= suelo - 5) {
+	if (teclas.w.activa && jugador.posición.y + jugador.tamaño.alto >= suelo - 5) {
 		jugador.velocidad.y = -13;
 	}
 
-	if (presión.izquierda.presionado && presión.tecla_actual == "izquierda") {
+	if (teclas.izquierda.activa && teclas.actual == "izquierda") {
 		enemigo.velocidad.x = -10;
-	} else if (presión.derecha.presionado && presión.tecla_actual == "derecha") {
+	} else if (teclas.derecha.activa && teclas.actual == "derecha") {
 		enemigo.velocidad.x = 10;
-	} else if (presión.izquierda.presionado) {
+	} else if (teclas.izquierda.activa) {
 		enemigo.velocidad.x = -10;
-	} else if (presión.derecha.presionado) {
+	} else if (teclas.derecha.activa) {
 		enemigo.velocidad.x = 10;
 	}
-	if (presión.arriba.presionado && enemigo.posición.y + enemigo.tamaño.alto >= suelo - 5) {
+	if (teclas.arriba.activa && enemigo.posición.y + enemigo.tamaño.alto >= suelo - 5) {
 		enemigo.velocidad.y = -13;
 	}
 
