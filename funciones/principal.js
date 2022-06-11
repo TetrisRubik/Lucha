@@ -14,12 +14,12 @@ const suelo = lienzo.alto - 32;
 
 const teclas = {
 	actual: "",
-	a: { activa: false },
-	w: { activa: false },
-	d: { activa: false },
-	izquierda: { activa: false },
-	arriba: { activa: false },
-	derecha: { activa: false }
+	a: false,
+	w: false,
+	d: false,
+	j: false,
+	i: false,
+	l: false
 };
 
 class Objeto {
@@ -54,7 +54,7 @@ const enemigo = new Objeto({ ancho: 120, alto: 240 }, { x: 840, y: 64 }, "#F22",
 
 escuchar_controles(teclas);
 
-function animación() {
+function pedir_fotograma() {
 	ctx.fillStyle = "#000";
 	ctx.fillRect(0, 0, lienzo.ancho, lienzo.alto);
 	jugador.actualiza();
@@ -62,34 +62,34 @@ function animación() {
 
 	jugador.velocidad.x = 0;
 	enemigo.velocidad.x = 0;
-	// console.log(teclas.actual);
-	if (teclas.a.activa && teclas.actual == "a") {
+
+	if (teclas.a && teclas.actual == "a") {
 		jugador.velocidad.x = -10;
-	} else if (teclas.d.activa && teclas.actual == "d") {
+	} else if (teclas.d && teclas.actual == "d") {
 		jugador.velocidad.x = 10;
-	} else if (teclas.a.activa) {
+	} else if (teclas.a) {
 		jugador.velocidad.x = -10;
-	} else if (teclas.d.activa) {
+	} else if (teclas.d) {
 		jugador.velocidad.x = 10;
 	}
-	if (teclas.w.activa && jugador.posición.y + jugador.tamaño.alto >= suelo - 5) {
+	if (teclas.w && jugador.posición.y + jugador.tamaño.alto >= suelo - 5) {
 		jugador.velocidad.y = -13;
 	}
 
-	if (teclas.izquierda.activa && teclas.actual == "izquierda") {
+	if (teclas.j && teclas.actual == "j") {
 		enemigo.velocidad.x = -10;
-	} else if (teclas.derecha.activa && teclas.actual == "derecha") {
+	} else if (teclas.l && teclas.actual == "l") {
 		enemigo.velocidad.x = 10;
-	} else if (teclas.izquierda.activa) {
+	} else if (teclas.j) {
 		enemigo.velocidad.x = -10;
-	} else if (teclas.derecha.activa) {
+	} else if (teclas.l) {
 		enemigo.velocidad.x = 10;
 	}
-	if (teclas.arriba.activa && enemigo.posición.y + enemigo.tamaño.alto >= suelo - 5) {
+	if (teclas.i && enemigo.posición.y + enemigo.tamaño.alto >= suelo - 5) {
 		enemigo.velocidad.y = -13;
 	}
 
-	window.requestAnimationFrame(animación);
+	window.requestAnimationFrame(pedir_fotograma);
 }
 
-animación();
+pedir_fotograma();
