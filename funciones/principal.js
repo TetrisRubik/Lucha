@@ -1,16 +1,12 @@
 //* Guión principal.
 import escuchar_controles from "./controles.js";
+import { crear_lienzo, definir_estilo, dibujar_rectángulo } from "./lienzo.js";
 
-const lienzo = document.getElementById("lienzo");
-const ctx = lienzo.getContext("2d");
-
-lienzo.ancho = 1024;
-lienzo.alto = 576;
-
-ctx.fillRect(0, 0, lienzo.ancho, lienzo.alto);
+const dimensiones = { ancho: 0, alto: 0 };
+crear_lienzo(dimensiones);
 
 const gravedad = 0.4;
-const suelo = lienzo.alto - 32;
+const suelo = dimensiones.alto - 32;
 
 const teclas = {
 	actual: "",
@@ -23,20 +19,20 @@ const teclas = {
 };
 
 class Objeto {
-	constructor(tamaño, posición, color, velocidad) {
+	constructor(tamaño, posición, color) {
 		this.tamaño = tamaño;
 		this.posición = posición;
 		this.color = color;
-		this.velocidad = velocidad;
+		this.velocidad = { x: 0, y: 0 };
 	}
 
-	dibuja() {
-		ctx.fillStyle = this.color;
-		ctx.fillRect(this.posición.x, this.posición.y, this.tamaño.ancho, this.tamaño.alto);
+	dibujar() {
+		definir_estilo(this.color);
+		dibujar_rectángulo(this.posición.x, this.posición.y, this.tamaño.ancho, this.tamaño.alto);
 	}
 
-	actualiza() {
-		this.dibuja();
+	actualizar() {
+		this.dibujar();
 		this.posición.x += this.velocidad.x;
 		this.posición.y += this.velocidad.y;
 		if (this.posición.y + this.tamaño.alto + this.velocidad.y >= suelo) {
@@ -48,17 +44,17 @@ class Objeto {
 	}
 }
 
-const jugador = new Objeto({ ancho: 120, alto: 240 }, { x: 64, y: 64 }, "#66F", { x: 0, y: 2 });
+const jugador = new Objeto({ ancho: 120, alto: 240 }, { x: 64, y: 64 }, "#66F");
 
-const enemigo = new Objeto({ ancho: 120, alto: 240 }, { x: 840, y: 64 }, "#F22", { x: 0, y: 2 });
+const enemigo = new Objeto({ ancho: 120, alto: 240 }, { x: 840, y: 64 }, "#F22");
 
 escuchar_controles(teclas);
 
 function pedir_fotograma() {
-	ctx.fillStyle = "#000";
-	ctx.fillRect(0, 0, lienzo.ancho, lienzo.alto);
-	jugador.actualiza();
-	enemigo.actualiza();
+	definir_estilo("#000");
+	dibujar_rectángulo(0, 0, dimensiones.ancho, dimensiones.alto);
+	jugador.actualizar();
+	enemigo.actualizar();
 
 	jugador.velocidad.x = 0;
 	enemigo.velocidad.x = 0;
