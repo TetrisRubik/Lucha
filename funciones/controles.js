@@ -1,5 +1,5 @@
 //* Detección de tecleo y reacción correspondiente.
-export default function escuchar_controles(teclas) {
+export default function escuchar_teclado(teclas) {
 	document.addEventListener("keydown", (tecla) => {
 		activar(tecla.key);
 	});
@@ -9,8 +9,8 @@ export default function escuchar_controles(teclas) {
 	});
 
 	function activar(tecla) {
-		teclas[tecla.toLowerCase()] = true;
 		teclas.actual = tecla.toLowerCase();
+		teclas[tecla.toLowerCase()] = true;
 	}
 
 	function desactivar(tecla) {
