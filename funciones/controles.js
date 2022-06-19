@@ -9,7 +9,7 @@ export default function escuchar_teclado(teclas) {
 	});
 
 	function activar(tecla) {
-		teclas.actual = tecla.toLowerCase();
+		teclas.actual = tecla.toLowerCase(); //# Modificar tecla actual para cada jugador.
 		teclas[tecla.toLowerCase()] = true;
 	}
 
