@@ -54,6 +54,22 @@ function cargar_fotograma() {
 		enemigo.velocidad.y = 13;
 	}
 
+	if (jugador.posición.x < enemigo.posición.x) {
+		jugador.mirar_derecha();
+		enemigo.mirar_izquierda();
+	} else {
+		jugador.mirar_izquierda();
+		enemigo.mirar_derecha();
+	}
+
+	if (colisión_rectangular(jugador, enemigo)) {
+		console.log("JUGADOR");
+	}
+
+	if (colisión_rectangular(enemigo, jugador)) {
+		console.log("ENEMIGO");
+	}
+
 	window.requestAnimationFrame(cargar_fotograma);
 }
 

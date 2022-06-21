@@ -13,7 +13,7 @@ export default class Objeto {
 			color: "#0F0",
 			posición: {
 				x: this.posición.x + 75,
-				y: this.posición.y + this.tamaño.alto - 100
+				y: this.posición.y + this.tamaño.alto - 120
 			},
 			tamaño: {
 				ancho: 240,
@@ -31,6 +31,7 @@ export default class Objeto {
 
 	actualizar() {
 		this.dibujar();
+		this.ataque.posición.y = this.posición.y + this.tamaño.alto - 120;
 		this.posición.x += this.velocidad.x;
 		this.posición.y += this.velocidad.y;
 		if (this.posición.y + this.velocidad.y <= this.juego.suelo) {
@@ -39,5 +40,13 @@ export default class Objeto {
 		} else {
 			this.velocidad.y -= this.juego.gravedad;
 		}
+	}
+
+	mirar_derecha() {
+		this.ataque.posición.x = this.posición.x + this.tamaño.ancho;
+	}
+
+	mirar_izquierda() {
+		this.ataque.posición.x = this.posición.x - this.ataque.tamaño.ancho;
 	}
 }
