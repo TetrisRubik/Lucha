@@ -3,6 +3,7 @@ import { definir_estilo, dibujar_rectángulo } from "./lienzo.js";
 
 export default class Objeto {
 	constructor(posición, tamaño, color, juego) {
+		this.orientación = true;
 		this.posición = posición;
 		this.tamaño = tamaño;
 		this.color = color;
@@ -15,7 +16,7 @@ export default class Objeto {
 				y: this.posición.y + this.tamaño.alto - 100
 			},
 			tamaño: {
-				ancho: 300,
+				ancho: 240,
 				alto: 50
 			}
 		};
@@ -30,8 +31,6 @@ export default class Objeto {
 
 	actualizar() {
 		this.dibujar();
-		this.ataque.posición.x = this.posición.x + 75;
-		this.ataque.posición.y = this.posición.y + this.tamaño.alto - 100;
 		this.posición.x += this.velocidad.x;
 		this.posición.y += this.velocidad.y;
 		if (this.posición.y + this.velocidad.y <= this.juego.suelo) {

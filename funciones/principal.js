@@ -1,4 +1,5 @@
 //* Guión principal.
+import { colisión_rectangular } from "./colisiones.js";
 import escuchar_teclado from "./controles.js";
 import { crear_lienzo, limpiar_lienzo } from "./lienzo.js";
 import Objeto from "./objeto.js";
@@ -51,10 +52,6 @@ function cargar_fotograma() {
 	}
 	if (teclas.i && enemigo.posición.y <= variables_juego.suelo) {
 		enemigo.velocidad.y = 13;
-	}
-
-	if (jugador.ataque.posición.x + jugador.ataque.tamaño.ancho >= enemigo.posición.x && jugador.ataque.posición.x <= enemigo.posición.x + enemigo.tamaño.ancho && jugador.ataque.posición.y + jugador.ataque.tamaño.alto >= enemigo.posición.y && jugador.ataque.posición.y <= enemigo.posición.y + enemigo.tamaño.alto) {
-		console.log("GOLPE");
 	}
 
 	window.requestAnimationFrame(cargar_fotograma);
