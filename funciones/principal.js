@@ -25,9 +25,7 @@ function cargar_fotograma() {
 	jugador.velocidad.x = 0;
 	enemigo.velocidad.x = 0;
 
-	// jugador.calcular_velocidad(teclas);
-	// enemigo.calcular_velocidad(teclas);
-
+	// Controles del jugador 1.
 	if (teclas.a && teclas.actual == "a") {
 		jugador.velocidad.x = -10;
 	} else if (teclas.d && teclas.actual == "d") {
@@ -40,7 +38,11 @@ function cargar_fotograma() {
 	if (teclas.w && jugador.posición.y <= variables_juego.suelo) {
 		jugador.velocidad.y = 13;
 	}
+	if (teclas[" "]) {
+		jugador.atacar();
+	}
 
+	// Controles del jugador 2.
 	if (teclas.j && teclas.actual == "j") {
 		enemigo.velocidad.x = -10;
 	} else if (teclas.l && teclas.actual == "l") {
@@ -53,7 +55,11 @@ function cargar_fotograma() {
 	if (teclas.i && enemigo.posición.y <= variables_juego.suelo) {
 		enemigo.velocidad.y = 13;
 	}
+	if (teclas.enter) {
+		enemigo.atacar();
+	}
 
+	// Orientación del personaje.
 	if (jugador.posición.x < enemigo.posición.x) {
 		jugador.mirar_derecha();
 		enemigo.mirar_izquierda();
@@ -62,12 +68,16 @@ function cargar_fotograma() {
 		enemigo.mirar_derecha();
 	}
 
-	if (colisión_rectangular(jugador, enemigo)) {
-		console.log("JUGADOR");
+	// Colisiones.
+	if (jugador.atacando) {
+		if (colisión_rectangular(jugador, enemigo)) {
+			console.log("JUGADOR");
+		}
 	}
-
-	if (colisión_rectangular(enemigo, jugador)) {
-		console.log("ENEMIGO");
+	if (enemigo.atacando) {
+		if (colisión_rectangular(enemigo, jugador)) {
+			console.log("ENEMIGO");
+		}
 	}
 
 	window.requestAnimationFrame(cargar_fotograma);

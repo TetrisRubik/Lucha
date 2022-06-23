@@ -3,11 +3,12 @@ import { definir_estilo, dibujar_rectángulo } from "./lienzo.js";
 
 export default class Objeto {
 	constructor(posición, tamaño, color, juego) {
-		this.orientación = true;
 		this.posición = posición;
 		this.tamaño = tamaño;
 		this.color = color;
 		this.velocidad = { x: 0, y: 0 };
+		this.orientación = true;
+		this.atacando = false;
 		this.juego = juego;
 		this.ataque = {
 			color: "#0F0",
@@ -25,8 +26,10 @@ export default class Objeto {
 	dibujar() {
 		definir_estilo(this.color);
 		dibujar_rectángulo(this.posición, this.tamaño);
-		definir_estilo(this.ataque.color);
-		dibujar_rectángulo(this.ataque.posición, this.ataque.tamaño);
+		if (this.atacando) {
+			definir_estilo(this.ataque.color);
+			dibujar_rectángulo(this.ataque.posición, this.ataque.tamaño);
+		}
 	}
 
 	actualizar() {
@@ -40,6 +43,13 @@ export default class Objeto {
 		} else {
 			this.velocidad.y -= this.juego.gravedad;
 		}
+	}
+
+	atacar() {
+		this.atacando = true;
+		setTimeout(() => {
+			this.atacando = false;
+		}, 500);
 	}
 
 	mirar_derecha() {
