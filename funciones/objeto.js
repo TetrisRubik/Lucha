@@ -45,6 +45,24 @@ export default class Objeto {
 		}
 	}
 
+	ejecutar_controles(teclas, controles) {
+		if (teclas[controles.izquierda] && teclas.actual == controles.izquierda) {
+			this.velocidad.x = -10;
+		} else if (teclas[controles.derecha] && teclas.actual == controles.derecha) {
+			this.velocidad.x = 10;
+		} else if (teclas[controles.izquierda]) {
+			this.velocidad.x = -10;
+		} else if (teclas[controles.derecha]) {
+			this.velocidad.x = 10;
+		}
+		if (teclas[controles.arriba] && this.posición.y <= this.juego.suelo) {
+			this.velocidad.y = 13;
+		}
+		if (teclas[controles.atacar]) {
+			this.atacar();
+		}
+	}
+
 	atacar() {
 		this.atacando = true;
 		setTimeout(() => {

@@ -26,38 +26,22 @@ function cargar_fotograma() {
 	enemigo.velocidad.x = 0;
 
 	// Controles del jugador 1.
-	if (teclas.a && teclas.actual == "a") {
-		jugador.velocidad.x = -10;
-	} else if (teclas.d && teclas.actual == "d") {
-		jugador.velocidad.x = 10;
-	} else if (teclas.a) {
-		jugador.velocidad.x = -10;
-	} else if (teclas.d) {
-		jugador.velocidad.x = 10;
-	}
-	if (teclas.w && jugador.posición.y <= variables_juego.suelo) {
-		jugador.velocidad.y = 13;
-	}
-	if (teclas[" "]) {
-		jugador.atacar();
-	}
+	const controles_1 = {
+		izquierda: "a",
+		arriba: "w",
+		derecha: "d",
+		atacar: " "
+	};
+	jugador.ejecutar_controles(teclas, controles_1);
 
 	// Controles del jugador 2.
-	if (teclas.j && teclas.actual == "j") {
-		enemigo.velocidad.x = -10;
-	} else if (teclas.l && teclas.actual == "l") {
-		enemigo.velocidad.x = 10;
-	} else if (teclas.j) {
-		enemigo.velocidad.x = -10;
-	} else if (teclas.l) {
-		enemigo.velocidad.x = 10;
-	}
-	if (teclas.i && enemigo.posición.y <= variables_juego.suelo) {
-		enemigo.velocidad.y = 13;
-	}
-	if (teclas.enter) {
-		enemigo.atacar();
-	}
+	const controles_2 = {
+		izquierda: "j",
+		arriba: "i",
+		derecha: "l",
+		atacar: "enter"
+	};
+	enemigo.ejecutar_controles(teclas, controles_2);
 
 	// Orientación del personaje.
 	if (jugador.posición.x < enemigo.posición.x) {
