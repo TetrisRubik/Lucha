@@ -4,8 +4,35 @@ body {
 	background-color: var(--fondo);
 }
 
-#lienzo {
-	display: block;
+#juego {
+	width: 1024px;
+	height: 576px;
 	margin: 6vw auto;
 	border: 1px solid var(--borde);
+}
+
+#barra_de_vida {
+	display: flex;
+	position: absolute;
+	margin: 20px;
+}
+
+#vida_jugador_1 {
+	width: 402px;
+	height: 50px;
+	margin: 18px 0px 20px 40px;
+	background-color: var(--vida);
+}
+
+#temporizador {
+	width: 100px;
+	height: 100px;
+	background-color: var(--tiempo);
+}
+
+#vida_jugador_2 {
+	width: 402px;
+	height: 50px;
+	margin: 18px 40px 20px 0px;
+	background-color: var(--vida);
 }
