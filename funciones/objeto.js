@@ -45,20 +45,20 @@ export default class Objeto {
 		}
 	}
 
-	ejecutar_controles(teclas, controles) {
-		if (teclas[controles.izquierda] && teclas.actual == controles.izquierda) {
+	ejecutar_controles(teclas, { izquierda, derecha, arriba, atacar }) {
+		if (teclas[izquierda] && teclas.actual == izquierda) {
 			this.velocidad.x = -10;
-		} else if (teclas[controles.derecha] && teclas.actual == controles.derecha) {
+		} else if (teclas[derecha] && teclas.actual == derecha) {
 			this.velocidad.x = 10;
-		} else if (teclas[controles.izquierda]) {
+		} else if (teclas[izquierda]) {
 			this.velocidad.x = -10;
-		} else if (teclas[controles.derecha]) {
+		} else if (teclas[derecha]) {
 			this.velocidad.x = 10;
 		}
-		if (teclas[controles.arriba] && this.posición.y <= this.juego.suelo) {
+		if (teclas[arriba] && this.posición.y <= this.juego.suelo) {
 			this.velocidad.y = 13;
 		}
-		if (teclas[controles.atacar]) {
+		if (teclas[atacar]) {
 			this.atacar();
 		}
 	}
