@@ -1,4 +1,3 @@
-//* Clase de los elementos principales del juego.
 import { definir_estilo, dibujar_rectángulo } from "./lienzo.js";
 
 export default class Objeto {

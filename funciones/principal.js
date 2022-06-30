@@ -1,4 +1,3 @@
-//* Guión principal.
 import { colisión_rectangular } from "./colisiones.js";
 import escuchar_teclado from "./controles.js";
 import { crear_lienzo, limpiar_lienzo } from "./lienzo.js";

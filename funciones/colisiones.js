@@ -1,4 +1,3 @@
-//* Funciones para detectar colisiones entre dos objetos.
 export function colisión_rectangular(objeto_A, objeto_B) {
 	return colisión_rectangular_superior(objeto_A.ataque.posición, objeto_B) &&
 		colisión_rectangular_derecha(objeto_A.ataque, objeto_B.posición) &&

@@ -1,4 +1,3 @@
-/** Estilo principal */
 body {
 	margin: 0;
 	background-color: var(--fondo);
@@ -12,8 +11,8 @@ body {
 }
 
 #barra_de_vida {
-	display: flex;
 	position: absolute;
+	display: flex;
 	margin: 20px;
 }
 

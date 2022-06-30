@@ -1,4 +1,3 @@
-//* Funciones que tratan y pintan sobre el lienzo.
 const id_lienzo = "lienzo";
 const lienzo = {};
 let contexto;
