@@ -54,12 +54,12 @@ function cargar_fotograma() {
 	// Colisiones.
 	if (jugador.atacando) {
 		if (colisión_rectangular(jugador, enemigo)) {
-			console.log("JUGADOR");
+			enemigo.perder_vida();
 		}
 	}
 	if (enemigo.atacando) {
 		if (colisión_rectangular(enemigo, jugador)) {
-			console.log("ENEMIGO");
+			jugador.perder_vida();
 		}
 	}
 

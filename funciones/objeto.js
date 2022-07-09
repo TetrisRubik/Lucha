@@ -1,7 +1,9 @@
 import { definir_estilo, dibujar_rectángulo } from "./lienzo.js";
 
+let id = 1;
+
 export default class Objeto {
-	constructor(posición, tamaño, color, juego) {
+	constructor(posición, tamaño, color, juego, n) {
 		this.posición = posición;
 		this.tamaño = tamaño;
 		this.color = color;
@@ -9,6 +11,7 @@ export default class Objeto {
 		this.orientación = true;
 		this.atacando = false;
 		this.juego = juego;
+		this.barra = document.getElementById("vida_" + id);
 		this.ataque = {
 			color: "#0F0",
 			posición: {
@@ -20,6 +23,7 @@ export default class Objeto {
 				alto: 50
 			}
 		};
+		id++;
 	}
 
 	dibujar() {
@@ -75,5 +79,12 @@ export default class Objeto {
 
 	mirar_izquierda() {
 		this.ataque.posición.x = this.posición.x - this.ataque.tamaño.ancho;
+	}
+
+	perder_vida() {
+		const actual = this.barra.style.width.split("px")[0];
+		this.barra.style.width = actual - 2 + "px";
+		if (this.barra.style.width < 0)
+			this.barra.style.width = "0px";
 	}
 }

@@ -17,7 +17,7 @@ body {
 }
 
 #vida_jugador_1 {
-	width: 402px;
+	width: 400px;
 	height: 50px;
 	margin: 18px 0px 20px 40px;
 	background-color: var(--vida);
@@ -30,8 +30,21 @@ body {
 }
 
 #vida_jugador_2 {
-	width: 402px;
+	width: 400px;
 	height: 50px;
 	margin: 18px 40px 20px 0px;
 	background-color: var(--vida);
+}
+
+#vida_1 {
+	width: 400px;
+	height: 50px;
+	background-color: green;
+}
+
+#vida_2 {
+	margin-left: auto;
+	width: 400px;
+	height: 50px;
+	background-color: green;
 }
